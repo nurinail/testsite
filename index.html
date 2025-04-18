@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Səni Anlamağa Çalışdım</title>
   <style>
-    body { 
+    body {
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -32,6 +32,7 @@
       border-radius: 20px;
       backdrop-filter: blur(5px);
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      display: none; /* Başlanğıcda gizlidir */
     }
 
     .hearts {
@@ -108,12 +109,30 @@
         height: 20px;
       }
     }
+
+    .reveal-button {
+      margin-top: 20px;
+      padding: 10px 25px;
+      font-size: 1em;
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: background-color 0.3s;
+    }
+
+    .reveal-button:hover {
+      background-color: #c2185b;
+    }
   </style>
 </head>
 <body>
   <h1>Nərmin, Səssizcə Səni Anlayıram…</h1>
+  <button class="reveal-button" onclick="revealMessage()">Mesajı görmək üçün tıkla Nərmin</button>
 
-  <div class="message">
+  <div class="message" id="message">
     <p>Bəzən insan birini tanımadan da onun necə güclü və dəyərli olduğunu görə bilir.</p>
     <p>Paylaşımlarını hər dəfə görəndə anlayıram ki, sən necə böyük bir sevginin daşıyıcısısan…</p>
     <p>Sənin bu qədər güclü, bir o qədər də duyğulu bir bacı olduğunu gördükcə, səni daha çox başa düşmək istəyirəm.</p>
@@ -124,8 +143,7 @@
 
   <div class="hearts"></div>
 
-  <audio controls autoplay src="/music/musiqicut.mp3">
-  </audio>
+  <audio id="myAudio" src="music/musiqicut.mp3"></audio>
 
   <script>
     const heartsContainer = document.querySelector('.hearts');
@@ -136,6 +154,13 @@
       heart.style.animationDuration = 5 + Math.random() * 5 + 's';
       heart.style.animationDelay = Math.random() * 5 + 's';
       heartsContainer.appendChild(heart);
+    }
+
+    function revealMessage() {
+      document.getElementById('message').style.display = 'block';
+      const audio = document.getElementById('myAudio');
+      audio.play().catch(e => console.log("Autoplay bloklandı:", e));
+      document.querySelector('.reveal-button').style.display = 'none';
     }
   </script>
 </body>
