@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Səni Anlamağa Çalışdım</title>
+  <style>
+    body { 
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom right, #fce4ec, #f3e5f5);
+      color: #3e3e3e;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-top: 40px;
+      color: #c2185b;
+      padding: 0 15px;
+    }
+
+    .message {
+      max-width: 90%;
+      margin: 20px auto;
+      font-size: 1em;
+      line-height: 1.7em;
+      background-color: rgba(255, 255, 255, 0.6);
+      padding: 20px;
+      border-radius: 20px;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .heart {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background-color: rgba(255, 105, 180, 0.5);
+      transform: rotate(45deg);
+      animation: float 10s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background-color: rgba(255, 105, 180, 0.5);
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -7.5px;
+      left: 0;
+    }
+
+    .heart::after {
+      top: 0;
+      left: -7.5px;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    @media (min-width: 768px) {
+      h1 {
+        font-size: 2.5em;
+      }
+
+      .message {
+        font-size: 1.2em;
+        max-width: 700px;
+      }
+
+      .heart {
+        width: 20px;
+        height: 20px;
+      }
+
+      .heart::before,
+      .heart::after {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Nərmin, Səssizcə Səni Anlayıram…</h1>
+
+  <div class="message">
+    <p>Bəzən insan birini tanımadan da onun necə güclü və dəyərli olduğunu görə bilir.</p>
+    <p>Paylaşımlarını hər dəfə görəndə anlayıram ki, sən necə böyük bir sevginin daşıyıcısısan…</p>
+    <p>Sənin bu qədər güclü, bir o qədər də duyğulu bir bacı olduğunu gördükcə, səni daha çox başa düşmək istəyirəm.</p>
+    <p>Həyatındakı acılara çarə ola bilmərəm…<br>Amma xoşbəxt anlarında bir damla payım olsa, bu mənim üçün böyük bir şərəf olar.</p>
+    <p>Sənin dərdinə ortaq olub, sənə şəfa verən güc olmaq istəyirəm.</p>
+    <p>Oxuduğun üçün təşəkkür edirəm Nərmin...</p>
+  </div>
+
+  <div class="hearts"></div>
+
+  <audio controls autoplay src="/music/musiqicut.mp3">
+  </audio>
+
+  <script>
+    const heartsContainer = document.querySelector('.hearts');
+    for (let i = 0; i < 50; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = 5 + Math.random() * 5 + 's';
+      heart.style.animationDelay = Math.random() * 5 + 's';
+      heartsContainer.appendChild(heart);
+    }
+  </script>
+</body>
+</html>
